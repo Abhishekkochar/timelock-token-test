@@ -396,6 +396,7 @@ contract COMF is Context, IERC20, Ownable {
     uint256 private _previousDevelopmentFee = _developmentFee;
     uint256 public _liquidityFee = 50;
     uint256 private _previousLiquidityFee = _liquidityFee;
+    //mapping will be here for to track the mint time for both transfer and selling
 
     IUniswapV2Router02 public immutable uniswapV2Router;
     address public immutable uniswapV2Pair;
@@ -442,6 +443,7 @@ contract COMF is Context, IERC20, Ownable {
         return tokenFromReflection(_rOwned[account]);
     }
     function transfer(address recipient, uint256 amount) public override returns (bool) {
+    //you would pass the logic here. 
         _transfer(_msgSender(), recipient, amount);
         return true;
     }
@@ -453,6 +455,7 @@ contract COMF is Context, IERC20, Ownable {
         return true;
     }
     function transferFrom(address sender, address recipient, uint256 amount) public override returns (bool) {
+        //you would pass the logic here. 
         _transfer(sender, recipient, amount);
         _approve(sender, _msgSender(), _allowances[sender][_msgSender()].sub(amount, "ERC20: transfer amount exceeds allowance"));
         return true;
